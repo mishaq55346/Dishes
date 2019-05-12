@@ -14,4 +14,26 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Restaurant.h">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Order.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="dishes1.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="menu.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="dishes.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
