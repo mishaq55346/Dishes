@@ -5,10 +5,12 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-
-#include "Restaurant.h"
+#include "rapidjson/istreamwrapper.h"
+#include "rapidjson/document.h"
+#include "rapidjson/stringbuffer.h"
 
 using namespace std;
+using namespace rapidjson;
 
 int main()
 {
@@ -16,76 +18,38 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	static const char* kTypeNames[] =
-	{ "Null", "False", "True", "Object", "Array", "String", "Number" };
-	ifstream ifs("dishes.json");
-	IStreamWrapper isw(ifs);
+	ifstream ifs("file.json");
+	IStreamWrapper isw(ifs);//загружаем файл file.json
 	Document doc;
-	doc.ParseStream(isw);
-	Value& s = doc["obj"];
-	for (Value::ConstMemberIterator itr = doc.MemberBegin();
-		itr != doc.MemberEnd(); ++itr)
-	{
-		printf("Type of member %s is %s\n",
-			itr->name.GetString(), kTypeNames[itr->value.GetType()]);
-	}
+	doc.ParseStream(isw);//в Документ переносим парсинг файла
 	
+	Value& s1 = doc["stroka"];//в s1 храним элемент с ключом "stroka"
+	Value& s2 = doc["chislo"];
+	Value& s3 = doc["massiv"];
+	Value& s4 = doc["pravda"];
+	Value& s5 = doc["object"];
 
-	Restaurant res;
-	res.loadDishesFromFile();
-	res.showDishesInGroup(3);
-/*
-	int choice = 0;
+	string j1 = s1.GetString();//явно указываем, какой тип данных в объекте s1 - строка
+	cout << "string = " << j1 << endl;
 
-	cout << "Какую операцию Вы хотите выполнить?" << endl;
-	cout << "1. Посмотреть меню ресторана." << endl;
-	cout << "2. Посмотреть счет заказа." << endl;
-	cout << "3. Посмотреть отчет по продуктам на складе." << endl;
-	cout << "4. Посмотреть заказы за весь период." << endl;
-	cout << "5. Выход." << endl;
-	cout << "Выбранное действие: ";
+	int j2 = s2.GetInt();//здесь у нас число
+	cout << "int = " << j2 << endl;
 
-	cin >> choice;
+	cout << "array = [";//с массивами работаем немного по-другому
+	for (Value::ConstValueIterator itr = s3.Begin(); 
+		itr != s3.End(); ++itr)//проходим весь массив от начала (s3.Begin()) до конца
+		cout << itr->GetInt() << ", ";//выводим каждый элемент ЯВНО указывая, что мы оттуда "вытаскиваем"
+	cout << "]" << endl;
 
-	if (choice < 1 || choice > 5)
-	{
-		while (choice < 1 || choice > 5)
-		{
-			cout << "К сожалению, выбранное действие недопустимо. Повторите: " << endl;
-			cin >> choice;
-		}
-	}
+	bool j4 = s4.GetBool();//здесь у нас булева переменная
+	cout << "bool = " << j4 << endl;
 
-	switch (choice)
-	{
-		case 1:
-			res.ShowMenu();
-			cout << "Что желаете посмотреть?" << endl;
-			cout << "Выбранное действие: ";
-			int group;
-			cin >> group;
-			res.showDishesInGroup(group);
-			res.OrderDishes(group);
-			res.printOrder();
-		break;
-	}
-	*/
-	/*
-	ifstream A;
-	string nam;
-	int num, pri;
-	vector<Restaurant> v;
-	A.open("dishes1.txt");
-	if (A.is_open() && !A.eof())
-	{
-		A >> num;
-		A >> pri;
-		A >> nam;
-		v.emplace_back(num, pri, nam);
-	}
-	A.close();
-	for (auto dish : v)
-		dish.print();*/
+	cout << "object:\n";//	сначала указываем, что у нас объект
+	//										указываем, что нам нужен его элемент с ключом "name"
+	//															"вытаскиваем" значение и ЯВНО указываем его тип
+	cout << "	name: " <<  s5.GetObjectA().FindMember("name")->value.GetString() << endl;
+	cout << "	age: " <<  s5.GetObjectA().FindMember("age")->value.GetInt() << endl;
+
 	system("pause");
 	return 0;
 }

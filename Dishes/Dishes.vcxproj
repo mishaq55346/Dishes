@@ -23,6 +23,7 @@
     <ProjectGuid>{4ECD0FCC-886B-4B00-87A0-5B44C2FDD35C}</ProjectGuid>
     <RootNamespace>Dishes</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectName>Example</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -115,17 +116,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Restaurant.h" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="dishes.txt" />
-    <Text Include="dishes1.txt" />
-    <Text Include="menu.txt" />
-    <Text Include="Order.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="dishes.json" />
+    <None Include="file.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
