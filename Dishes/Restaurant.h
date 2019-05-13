@@ -24,6 +24,8 @@ public:
 	{
 		//cout << name << " из группы " << group << ", номер " << number << ". - цена: " << price << " руб.\n";
 		cout << number << ". " << name << " - " << price << " руб.\n";
+		cout << number << ". " << name << " - " << price << " руб.\n";
+		cout << number << ". " << name << " - " << price << " руб.\n";
 	}
 
 };
@@ -47,7 +49,7 @@ public:
 	{
 		
 		//cout << s.GetObjectA().MemberCount();
-		/*string tmp;
+		string tmp;
 		fstream File;
 		File.open("dishes.txt", ios::in);
 		while (!File.eof())
@@ -67,7 +69,7 @@ public:
 				price = price * 10 + (tmp.at(i) - '0');
 			dishes.emplace_back(name, price, group, num);
 		}
-		File.close();*/
+		File.close();
 	}
 	void showDishesInGroup(int group)
 	{

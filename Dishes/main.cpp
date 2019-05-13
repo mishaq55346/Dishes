@@ -12,34 +12,28 @@ using namespace std;
 
 int main()
 {
-	
 	setlocale(LC_ALL, "RUS");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+
 	static const char* kTypeNames[] =
 	{ "Null", "False", "True", "Object", "Array", "String", "Number" };
-
 	ifstream ifs("dishes.json");
 	IStreamWrapper isw(ifs);
 	Document doc;
 	doc.ParseStream(isw);
-	Value& s = doc["яичница"];
-	//s.SetInt(s.GetInt() + 1);
-	assert(doc.IsObject());
-	
+	Value& s = doc["obj"];
 	for (Value::ConstMemberIterator itr = doc.MemberBegin();
 		itr != doc.MemberEnd(); ++itr)
 	{
 		printf("Type of member %s is %s\n",
 			itr->name.GetString(), kTypeNames[itr->value.GetType()]);
 	}
-	cout << doc["яичница"].GetObjectA().FindMember("group")->value.GetInt() << endl;
-	cout << doc["яичница"].GetObjectA().FindMember("number")->value.GetInt() << endl;
+	
 
-
-	//Restaurant res;
-	//res.loadDishesFromFile();
-	//res.showDishesInGroup(3);
+	Restaurant res;
+	res.loadDishesFromFile();
+	res.showDishesInGroup(3);
 /*
 	int choice = 0;
 
