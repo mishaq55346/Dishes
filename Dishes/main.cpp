@@ -35,7 +35,6 @@ int main()
 	}
 	cout << doc["яичница"].GetObjectA().FindMember("group")->value.GetInt() << endl;
 	cout << doc["яичница"].GetObjectA().FindMember("number")->value.GetInt() << endl;
-	cout << doc["яичница"].GetObjectA().FindMember("name")->value.GetString() << endl;
 
 
 	//Restaurant res;
