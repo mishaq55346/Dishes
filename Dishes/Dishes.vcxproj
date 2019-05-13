@@ -124,7 +124,15 @@
     <Text Include="menu.txt" />
     <Text Include="Order.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dishes.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties dishes_1json__JSONSchema="http://json.schemastore.org/function" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

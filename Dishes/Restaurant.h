@@ -2,9 +2,13 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <iso646.h>
+#include "rapidjson/document.h"
+#include "rapidjson/istreamwrapper.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
 
 using namespace std;
+using namespace rapidjson;
 
 class Dish
 {
@@ -41,7 +45,9 @@ public:
 	}
 	void loadDishesFromFile()
 	{
-		string tmp;
+		
+		//cout << s.GetObjectA().MemberCount();
+		/*string tmp;
 		fstream File;
 		File.open("dishes.txt", ios::in);
 		while (!File.eof())
@@ -61,7 +67,7 @@ public:
 				price = price * 10 + (tmp.at(i) - '0');
 			dishes.emplace_back(name, price, group, num);
 		}
-		File.close();
+		File.close();*/
 	}
 	void showDishesInGroup(int group)
 	{

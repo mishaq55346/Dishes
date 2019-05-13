@@ -5,21 +5,43 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+
 #include "Restaurant.h"
 
 using namespace std;
 
 int main()
 {
+	
 	setlocale(LC_ALL, "RUS");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+	static const char* kTypeNames[] =
+	{ "Null", "False", "True", "Object", "Array", "String", "Number" };
+
+	ifstream ifs("dishes.json");
+	IStreamWrapper isw(ifs);
+	Document doc;
+	doc.ParseStream(isw);
+	Value& s = doc["Яичница"];
+	//s.SetInt(s.GetInt() + 1);
+	assert(doc.IsObject());
+	
+	for (Value::ConstMemberIterator itr = doc.MemberBegin();
+		itr != doc.MemberEnd(); ++itr)
+	{
+		printf("Type of member %s is %s\n",
+			itr->name.GetString(), kTypeNames[itr->value.GetType()]);
+	}
+	cout << doc["Яичница"].GetObjectA().FindMember("group")->value.GetInt() << endl;
+	cout << doc["Яичница"].GetObjectA().FindMember("number")->value.GetInt() << endl;
+	cout << doc["Яичница"].GetObjectA().FindMember("name")->value.GetString() << endl;
 
 
-	Restaurant res;
-	res.loadDishesFromFile();
+	//Restaurant res;
+	//res.loadDishesFromFile();
 	//res.showDishesInGroup(3);
-
+/*
 	int choice = 0;
 
 	cout << "Какую операцию Вы хотите выполнить?" << endl;
@@ -54,6 +76,7 @@ int main()
 			res.printOrder();
 		break;
 	}
+	*/
 	/*
 	ifstream A;
 	string nam;
